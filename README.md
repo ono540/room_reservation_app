@@ -43,7 +43,7 @@ android ios windows　未対応 2025/03/25時点
 
 1. リポジトリのクローン
 ```bash
-git clone https://github.com/yourusername/room_reservation_app.git
+git clone https://github.com/ono540/room_reservation_app.git
 cd room_reservation_app
 ```
 
@@ -117,7 +117,8 @@ lib/
 ├── presentation/   # プレゼンテーション層
 │   ├── components/ # 再利用可能なUIコンポーネント
 │   ├── screens/    # 画面
-│   ├── providers/  # Riverpodプロバイダー
+│   ├── notifiers/  # 状態変更のロジックを管理するNotifierクラス
+│   ├── providers/  # Notifierのインスタンスを提供するProvider定義
 │   └── state/      # 状態管理
 └── locator/        # 依存性注入の設定
 ```
