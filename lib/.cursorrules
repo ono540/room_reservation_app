@@ -1,0 +1,73 @@
+{
+  "project_structure": {
+    "core": {
+      "constants": "アプリ全体で使う定数を定義",
+      "enums": "共通で使用する列挙型 (Enum) を定義",
+      "style": "共通スタイルやテーマを格納",
+      "utils": "汎用的なユーティリティ関数を定義"
+    },
+    "data": {
+      "api": "HTTP通信クライアント、APIサービスを実装",
+      "database": "ローカルDB処理（SQLite、Hiveなど）を定義",
+      "mappers": "Model ⇔ Entity 変換処理を定義",
+      "models": "JSON連携・DB連携用のモデル (DTO/データモデル)",
+      "repositories": "domain側のインターフェースを実装する具体クラス群",
+      "storage": "SecureStorageやSharedPreferencesなどのストレージ連携"
+    },
+    "domain": {
+      "entities": "アプリの中核となる純粋なデータモデル（ビジネスエンティティ）",
+      "repositories": "データ取得のインターフェース定義",
+      "usecases": "ユースケース単位のビジネスロジック"
+    },
+    "presentation": {
+      "components": "画面を構成する小さなUI部品（Widget）群",
+      "screen": "1画面＝1ファイルの構成でUI定義（ページ）",
+      "state": "freezedで定義された状態クラス（State）",
+      "notifiers": "Riverpod StateNotifier等の状態管理ロジック",
+      "providers": "Riverpod ProviderなどUIと状態をつなぐ依存注入層",
+      "router": "AutoRouteのルーティング設定"
+    },
+    "locator": {
+      "locator_setup.dart": "依存注入のセットアップ（GetItなど）",
+      "app_initializer.dart": "アプリ起動時の初期処理",
+      "locator_service.dart": "Serviceの登録",
+      "locator_repository.dart": "Repositoryの登録"
+    },
+    "envied": {
+      "env.dart": "Envied環境変数クラス",
+      "env.env": ".envファイル",
+      "env.g.dart": "Envied自動生成ファイル"
+    }
+  },
+  "code_generation": {
+    "freezed": {
+      "use": true,
+      "applies_to": ["state", "model", "entity"]
+    },
+    "json_serializable": {
+      "use": true,
+      "applies_to": ["model"]
+    }
+  },
+  "repository_guidelines": {
+    "rule": "Repositoryは domain/repositories の抽象を実装し、data/database や data/api などのDataSourceに依存する",
+    "avoid": "DatabaseServiceやAPIクライアントにアプリケーションロジックを持たせないこと"
+  },
+  "state_management": {
+    "pattern": "Riverpod",
+    "structure": {
+      "notifiers": "StateNotifierで状態操作を管理",
+      "providers": "UIと状態を繋ぐProviderを定義",
+      "state": "freezedを使った明示的な状態モデル"
+    }
+  },
+  "routing": {
+    "framework": "auto_route",
+    "structure": "presentation/router に app_router.dart / app_router.gr.dart を配置"
+  },
+  "testing_guidelines": {
+    "unit_test_targets": ["usecases", "repositories", "utils"],
+    "widget_test_targets": ["screen", "components"],
+    "integration_test_targets": ["presentation/screen"]
+  }
+}
