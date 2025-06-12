@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:room_reservation_app/data/database/database_service.dart';
 import 'package:room_reservation_app/presentation/router/app_router.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz; 
 import 'package:window_size/window_size.dart';
 
 import 'locator/locator_setup.dart';
@@ -18,9 +18,9 @@ void main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
   await initializeDateFormatting('ja_JP');
-  await setupLocator();
+  final locatorSetup = LocatorSetup();
+  await locatorSetup.initialize();
   setupWindow();
-  await getIt<DatabaseService>().initDatabase();
   tz.initializeTimeZones(); // ここでタイムゾーンデータをロード
 
   // アプリ初期化処理　初回のみSecureStorage削除

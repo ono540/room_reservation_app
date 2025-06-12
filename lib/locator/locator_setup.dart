@@ -4,10 +4,13 @@ import 'locator_repository.dart';
 import 'locator_service.dart';
 import 'locator_usecase.dart';
 
-final getIt = GetIt.instance;
+class LocatorSetup {
+  static final GetIt _getIt = GetIt.instance;
+  static GetIt get getIt => _getIt;
 
-Future<void> setupLocator() async {
-  await setupServices(); // **サービスの登録**
-  setupRepositories(); // **リポジトリの登録**
-  setupUseCases(); // **ユースケースの登録**
+  Future<void> initialize() async {
+    await setupServices(_getIt); // **サービスの登録**
+    setupRepositories(_getIt); // **リポジトリの登録**
+    setupUseCases(_getIt); // **ユースケースの登録**
+  }
 }

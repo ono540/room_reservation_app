@@ -4,7 +4,7 @@ import '../domain/use_cases/schedule_use_case.dart';
 
 final getIt = GetIt.instance;
 
-void setupUseCases() {
+void setupUseCases(GetIt getIt) {
   getIt.registerSingleton<ScheduleUseCase>(
     ScheduleUseCase(getIt<ScheduleRepository>()),
   );
